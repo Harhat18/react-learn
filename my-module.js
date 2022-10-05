@@ -1,16 +1,16 @@
-const hello = (name) => {
+export default (name) => {
   console.log(`hello ${name}`);
 };
 
-export const topla = (a, b) => a + b;
-export const cikar = (a, b) => a - b;
-export const text = "text";
-export const user = {
+const topla = (a, b) => a + b;
+const cikar = (a, b) => a - b;
+const text = "text";
+const user = {
   name: "harun",
   surname: "hatib",
 };
 
-export const users = [
+const users = [
   {
     name: "harun",
     surname: "hatib",
@@ -20,4 +20,5 @@ export const users = [
     surname: "hatib",
   },
 ];
-export default hello;
+
+export { topla, cikar, text, user, users };
