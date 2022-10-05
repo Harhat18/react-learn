@@ -35,14 +35,66 @@ import axios from "axios";
 
 // ASYNC - AWAİT ile kullanımı
 
+//  PROMİSE ()
+
+// const getComments = () => {
+//   return new promise((resolve, reject) => {
+//     if (number === 1) {
+//         resolve("comments");
+//     }
+
+//     reject("bir problem oldu")
+//   });
+// };
+
+// getComments(1)
+//   .then((data) => console.log(data))
+//   .catch((e) => console.log(e));
+
+const getUsers = () => {
+  return new promise(async (resolve, reject) => {
+    const { data } = await axios("https://jsonplaceholder.typicode.com/users");
+
+    resolve(data);
+  });
+};
+
+const getPost = (post_id) => {
+  return new promise(async (resolve, reject) => {
+    const { data } = await axios(
+      "https://jsonplaceholder.typicode.com/posts/" + post_id
+    );
+
+    resolve(data);
+  });
+};
+
 (async () => {
-  const users = await axios("https://jsonplaceholder.typicode.com/users");
+  await getUsers()
+    .then((data) => console.log(data))
+    .catch((e) => console.log(e));
 
-  const post1 = await axios("https://jsonplaceholder.typicode.com/posts/1");
+  await getPost(1)
+    .then((data) => console.log(data))
+    .catch((e) => console.log(e));
+})();
 
-  const post2 = await axios("https://jsonplaceholder.typicode.com/posts/2");
+(async () => {
+  const users = await getUsers();
+  const post = await getPost(1);
 
-  console.log("users", users);
-  console.log("post1", post1);
-  console.log("post2", post2);
+  console.log(users);
+  console.log(post);
+})();
+
+(async () => {
+  try {
+    const users = await getUsers();
+    const post = await getPost(1);
+
+    console.log(users);
+    console.log(post);
+  } catch (e) {
+    console.log(e);
+  }
 })();
