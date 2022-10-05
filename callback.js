@@ -21,12 +21,28 @@
 // FETCH
 
 import fetch from "node-fetch";
-fetch("https://jsonplaceholder.typicode.com/users")
-  .then((data) => data.json())
-  .then((users) => {
-    console.log("users yüklendi", users);
-  });
+import axios from "axios";
 
-fetch("https://jsonplaceholder.typicode.com/posts")
-  .then((data) => data.json())
-  .then((posts) => console.log("posts yüklendi", posts));
+// fetch("https://jsonplaceholder.typicode.com/users")
+//   .then((data) => data.json())
+//   .then((users) => {
+//     console.log("users yüklendi", users);
+
+//     fetch("https://jsonplaceholder.typicode.com/posts/1")
+//       .then((data) => data.json())
+//       .then((posts) => console.log("posts yüklendi", posts));
+//   });
+
+// ASYNC - AWAİT ile kullanımı
+
+(async () => {
+  const users = await axios("https://jsonplaceholder.typicode.com/users");
+
+  const post1 = await axios("https://jsonplaceholder.typicode.com/posts/1");
+
+  const post2 = await axios("https://jsonplaceholder.typicode.com/posts/2");
+
+  console.log("users", users);
+  console.log("post1", post1);
+  console.log("post2", post2);
+})();
